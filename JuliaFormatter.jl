@@ -1,3 +1,5 @@
+import Pkg
+Pkg.add("JuliaFormatter")
 import JuliaFormatter
 JuliaFormatter.format(
     ".";

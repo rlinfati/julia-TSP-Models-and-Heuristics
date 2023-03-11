@@ -17,7 +17,7 @@ begin
             Pkg.PackageSpec("SCIP")   # ZIB
             Pkg.PackageSpec("COPT")   # Commercial
             Pkg.PackageSpec("Gurobi") # commercial
-            Pkg.PackageSpec("CPLEX")  # commercial
+            #Pkg.PackageSpec("CPLEX")  # commercial
             Pkg.PackageSpec("PlutoUI")
         ],
     )
@@ -31,7 +31,7 @@ using JuMP
 using GLPK, HiGHS, SCIP
 
 # ╔═╡ 22c0bbcf-0d00-4f0b-97ba-3a49df97cabb
-using COPT, Gurobi, CPLEX
+using COPT, Gurobi #CPLEX
 
 # ╔═╡ bb4218e4-06f0-482b-9ab6-55fedd51d429
 using Random
@@ -320,7 +320,7 @@ let
     X, Y = instance01(n)
     d = processInsta(X, Y)
     m = modelTSP(d)
-    solverGurobi!(m)
+    #solverGurobi!(m)
     println(JuMP.solution_summary(m))
 end
 
@@ -334,7 +334,7 @@ let
     X, Y = instance01(n)
     d = processInsta(X, Y)
     m = modelTSP(d)
-    solverCPLEX!(m)
+    #solverCPLEX!(m)
     println(JuMP.solution_summary(m))
 end
 
