@@ -5,12 +5,14 @@ This repository contains Julia code for solving the Traveling Salesman Problem (
 To see the Pluto notebooks, please visit https://rlinfati.github.io/julia-TSP-Models-and-Heuristics/
 
 ## 100-Models: Mathematical Model
-- DFJ mixed-integer linear program (MILP)
-- MTZ mixed-integer linear program (MILP)
-- GG  mixed-integer linear program (MILP)
+- Dantzig-Fulkerson-Johnson mixed-integer linear formulation (MILP)
+- Miller-Tucker-Zemlin mixed-integer linear formulation (MILP)
+- Gavish-Graves mixed-integer linear formulation (MILP)
 
 ## 200-Heuristic: Heuristic Algorithms Finding Initial Solutions
 - Nearest neighbor algorithm
+- Cheapest insertion algorithm
+- Savings algorithm (Clarke & Wright)
 
 ## 300-LocalSearch: Localsearch/Neighborhood Algorithms Improving Solutions
 - Swap heuristic

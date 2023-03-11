@@ -6,15 +6,15 @@ using InteractiveUtils
 
 # ╔═╡ 36184f24-de30-11ec-3a6f-6962a488690c
 begin
-	import Pkg
-	Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-	Pkg.activate()
-	Pkg.add([
-		Pkg.PackageSpec("Plots")
-		Pkg.PackageSpec("JuMP")
-		Pkg.PackageSpec("GLPK")
-	])
-	Pkg.status()
+    import Pkg
+    Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+    Pkg.activate()
+    Pkg.add([
+        Pkg.PackageSpec("Plots")
+        Pkg.PackageSpec("JuMP")
+        Pkg.PackageSpec("GLPK")
+    ])
+    Pkg.status()
 end
 
 # ╔═╡ 3a3bf26c-0e98-4d2e-8a41-bf810d19d31b
