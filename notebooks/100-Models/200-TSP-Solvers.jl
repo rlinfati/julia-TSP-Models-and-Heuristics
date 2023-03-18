@@ -134,7 +134,7 @@ md"""
 """
 
 # ╔═╡ 7d522813-71ef-41b4-91ac-2e587a874ec7
-function instance01(n::Int = 7)
+function instance01(n::Int)
     Random.seed!(1234)
     X = rand(n) * 1_000.0
     Y = rand(n) * 1_000.0
@@ -232,7 +232,7 @@ md"""
 """
 
 # ╔═╡ 9e869925-3a23-420f-aba3-8a83995012d1
-n = 10
+n = 7
 
 # ╔═╡ 7389e858-88c7-45db-9123-875dea2d22e5
 let
