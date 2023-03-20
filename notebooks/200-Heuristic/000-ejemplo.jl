@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.20
+# v0.19.22
 
 using Markdown
 using InteractiveUtils
@@ -9,7 +9,10 @@ begin
     import Pkg
     Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
     Pkg.activate()
-    Pkg.add([Pkg.PackageSpec("Plots")])
+    Pkg.add([
+		Pkg.PackageSpec("Plots")
+		Pkg.PackageSpec("PlutoUI")
+	])
     Pkg.status()
 end
 
@@ -19,11 +22,17 @@ using Plots
 # ╔═╡ ab17dac6-4197-4320-ac38-16072550731b
 using Random
 
+# ╔═╡ 4b030fb4-5bd0-47eb-9c9d-2815b595acab
+begin
+    using PlutoUI
+    PlutoUI.TableOfContents()
+end
+
 # ╔═╡ 3cc260c6-dc49-4939-9fd1-0e616556d167
-include("100-function.jl")
+include(joinpath(@__DIR__, "100-function.jl"))
 
 # ╔═╡ 2348b289-9f91-4e67-a365-5f346f01db01
-include("200-initial.jl")
+include(joinpath(@__DIR__, "200-initial.jl"))
 
 # ╔═╡ 1acdf778-7b93-493b-b6a6-5230bf9cda52
 md"""
@@ -86,3 +95,4 @@ p = tspPlot(X, Y, tour)
 # ╠═31b71c37-8bd1-4ce4-8789-e13f7705122d
 # ╠═1b9e0fce-6d96-4f2f-8d98-ae5af461e98c
 # ╠═c3968752-aa12-4a7f-8a04-844259a4d85b
+# ╠═4b030fb4-5bd0-47eb-9c9d-2815b595acab
