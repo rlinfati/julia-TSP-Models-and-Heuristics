@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.0
+# v0.19.22
 
 using Markdown
 using InteractiveUtils
@@ -8,28 +8,16 @@ using InteractiveUtils
 begin
     import Pkg
     Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-    Pkg.activate(; temp = false)
+    Pkg.activate()
     Pkg.add([
         Pkg.PackageSpec("Plots")
-        Pkg.PackageSpec("ImageShow")
-        Pkg.PackageSpec("ImageIO")
-        Pkg.PackageSpec("PNGFiles")
+        Pkg.PackageSpec("PlutoUI")
     ])
     Pkg.status()
-    md"""
-    **NOTE:** remove this cell/code
-    **NOTA:** remover esta celda/codigo
-    """
 end
 
 # ╔═╡ 06550f25-8997-406b-9617-aecd9efdaabc
 using Plots
-
-# ╔═╡ 29e2ae7b-47e2-493f-abf9-36c8a98e4bf7
-using ImageShow
-
-# ╔═╡ 95f7b0bb-9517-430c-9573-34eb6d120a64
-using PNGFiles
 
 # ╔═╡ 557451e9-0f61-480c-be53-0a0e6af60068
 using Random
@@ -37,12 +25,19 @@ using Random
 # ╔═╡ 03fcd07b-99d5-4e2d-bc7f-9e00909139c6
 using Statistics
 
-# ╔═╡ b097ee2a-649a-494a-bb09-ad4691e59cb0
-include(joinpath(@__DIR__, "120-functions.jl"))
+# ╔═╡ a0ccec84-e98f-44fb-a7af-cf69e7d8200f
+using PlutoUI
 
-# ╔═╡ bc810e37-4517-4a2c-84fb-338ba446915e
+# ╔═╡ 93987a6f-06af-4fd3-9a58-e33b1a7293f1
+include(joinpath(@__DIR__, "../200-Heuristic/100-function.jl"))
+
+# ╔═╡ 58a0df0b-7c4f-40e2-b6da-d232d9d3e7e0
+include(joinpath(@__DIR__, "../200-Heuristic/200-initial.jl"))
+
+# ╔═╡ db63e9bf-5236-45ab-b8d0-8158c01787e7
 md"""
-# Traveling Salesman Problem
+# Traveling Salesman Problem (TSP)
+[TSP en Wikipedia](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
 """
 
 # ╔═╡ c1b0733f-63d3-4e6a-9705-42bccb5d38de
@@ -246,16 +241,19 @@ function mhGA(dist::Array{Float64,2})
 end
 
 # ╔═╡ b03019d3-0270-45d8-ab5e-fcfb8d20dbc6
-md"""
-### Ejemplo de Programa
-"""
+n = 7
 
 # ╔═╡ 3f648c67-e281-406e-8953-28c6f138280c
-begin
-    X, Y = tspXYRand(10)
-    dist = distEuclidean(X, Y)
-    nothing
-end
+# X, Y = tspXYRand(n)
+# X, Y = tspXYCluster(n)
+X, Y = tspXYRand(n)
+
+# ╔═╡ 436ddb1e-5ea8-4cf5-9288-3c4cf4f744f9
+# dist = distEuclidean(X, Y)
+# dist = distManhattan(X, Y)	
+# dist = distMaximum(X, Y)
+# dist = distGeographical(X, Y)
+dist = distEuclidean(X, Y)
 
 # ╔═╡ e25019e0-3c89-4dc9-8adc-96900affe702
 tourMH = mhGA(dist)
@@ -264,28 +262,36 @@ tourMH = mhGA(dist)
 tspPlot(X, Y, tourMH)
 
 # ╔═╡ 1e099701-6fd7-42d3-a76e-0077c4c8a174
-PNGFiles.load(joinpath(@__DIR__, "tsp-plot-GAz.png"))
+PlutoUI.LocalResource(joinpath(@__DIR__, "tsp-plot-GAz.png"))
+
+# ╔═╡ 630ddb7e-7dd1-4a1d-8d22-01748b0a4817
+begin
+    # using PlutoUI
+    PlutoUI.TableOfContents()
+end
 
 # ╔═╡ Cell order:
-# ╟─51bfede6-1436-11ec-0cc6-bfff507e0e99
+# ╠═51bfede6-1436-11ec-0cc6-bfff507e0e99
+# ╠═db63e9bf-5236-45ab-b8d0-8158c01787e7
 # ╠═06550f25-8997-406b-9617-aecd9efdaabc
-# ╠═29e2ae7b-47e2-493f-abf9-36c8a98e4bf7
-# ╠═95f7b0bb-9517-430c-9573-34eb6d120a64
 # ╠═557451e9-0f61-480c-be53-0a0e6af60068
 # ╠═03fcd07b-99d5-4e2d-bc7f-9e00909139c6
-# ╟─bc810e37-4517-4a2c-84fb-338ba446915e
-# ╠═b097ee2a-649a-494a-bb09-ad4691e59cb0
-# ╟─c1b0733f-63d3-4e6a-9705-42bccb5d38de
+# ╠═a0ccec84-e98f-44fb-a7af-cf69e7d8200f
+# ╠═93987a6f-06af-4fd3-9a58-e33b1a7293f1
+# ╠═58a0df0b-7c4f-40e2-b6da-d232d9d3e7e0
+# ╠═c1b0733f-63d3-4e6a-9705-42bccb5d38de
 # ╠═ba80dace-0bdc-4239-a68c-0859f487ab45
-# ╟─c7c9a12f-f3ab-4251-888d-d1ac9b87aa60
+# ╠═c7c9a12f-f3ab-4251-888d-d1ac9b87aa60
 # ╠═e44f264e-e87d-4498-b89a-cdd8519eddd1
-# ╟─d049dd39-4736-4ff0-b2b0-981c61ee3296
+# ╠═d049dd39-4736-4ff0-b2b0-981c61ee3296
 # ╠═fab77d3b-203d-4033-bdd0-6ee1ff3cc572
 # ╠═bd777b54-0511-4dc0-8edf-29414ec4bdeb
-# ╟─6ef09464-2e99-43c3-99e9-af732d04db80
+# ╠═6ef09464-2e99-43c3-99e9-af732d04db80
 # ╠═8c2906e8-9656-44d2-89c4-0a5c2061440f
-# ╟─b03019d3-0270-45d8-ab5e-fcfb8d20dbc6
+# ╠═b03019d3-0270-45d8-ab5e-fcfb8d20dbc6
 # ╠═3f648c67-e281-406e-8953-28c6f138280c
+# ╠═436ddb1e-5ea8-4cf5-9288-3c4cf4f744f9
 # ╠═e25019e0-3c89-4dc9-8adc-96900affe702
 # ╠═f5050494-1975-4558-9a1f-2a44b388b3dd
 # ╠═1e099701-6fd7-42d3-a76e-0077c4c8a174
+# ╠═630ddb7e-7dd1-4a1d-8d22-01748b0a4817

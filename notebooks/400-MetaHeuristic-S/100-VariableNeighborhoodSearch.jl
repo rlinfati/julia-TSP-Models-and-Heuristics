@@ -10,9 +10,9 @@ begin
     Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
     Pkg.activate()
     Pkg.add([
-		Pkg.PackageSpec("Plots")
-		Pkg.PackageSpec("PlutoUI")
-	])
+        Pkg.PackageSpec("Plots")
+        Pkg.PackageSpec("PlutoUI")
+    ])
     Pkg.status()
 end
 
